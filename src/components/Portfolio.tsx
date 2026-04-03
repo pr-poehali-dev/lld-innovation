@@ -1,58 +1,49 @@
-import { useState } from 'react';
 import Icon from '@/components/ui/icon';
-
-const categories = ['Все', 'Лендинг', 'Корпоративный', 'Интернет-магазин'];
 
 const projects = [
   {
     image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/0747ad16-8995-41a0-829d-fe68b3defc42.jpg',
     title: 'Юридическая компания «Правозащита»',
     category: 'Лендинг',
-    tags: ['Дизайн', 'Разработка', 'SEO'],
-    result: '+340% заявок',
   },
   {
     image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/33da7463-0799-4a89-9178-eb127f88ce59.jpg',
     title: 'Интернет-магазин «ТехноМаркет»',
     category: 'Интернет-магазин',
-    tags: ['Разработка', 'CRM', 'Реклама'],
-    result: '+2.1M выручки/мес',
   },
   {
     image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/d5f3151e-37ef-415e-aac6-9089496c05f7.jpg',
     title: 'Строительная компания «СтройПроект»',
     category: 'Корпоративный',
-    tags: ['Дизайн', 'Разработка', 'Аналитика'],
-    result: 'В топ-3 Яндекса',
   },
   {
     image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/0747ad16-8995-41a0-829d-fe68b3defc42.jpg',
     title: 'Медицинский центр «Здоровье»',
     category: 'Лендинг',
-    tags: ['Дизайн', 'SEO', 'Поддержка'],
-    result: '+180% записей',
   },
   {
     image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/33da7463-0799-4a89-9178-eb127f88ce59.jpg',
     title: 'Студия красоты «Glamour»',
     category: 'Лендинг',
-    tags: ['Брендинг', 'Разработка'],
-    result: '+220% онлайн-записей',
   },
   {
     image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/d5f3151e-37ef-415e-aac6-9089496c05f7.jpg',
     title: 'Оптовый поставщик «ОптТорг»',
     category: 'Корпоративный',
-    tags: ['Разработка', 'CRM'],
-    result: '+75 новых дилеров',
+  },
+  {
+    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/0747ad16-8995-41a0-829d-fe68b3defc42.jpg',
+    title: 'Ресторан «Итальяно»',
+    category: 'Лендинг',
+  },
+  {
+    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/33da7463-0799-4a89-9178-eb127f88ce59.jpg',
+    title: 'Фитнес-клуб «SportLife»',
+    category: 'Корпоративный',
   },
 ];
 
 const Portfolio = () => {
-  const [active, setActive] = useState('Все');
-
-  const filtered = active === 'Все' ? projects : projects.filter((p) => p.category === active);
-
   return (
     <section id="portfolio" className="py-20 bg-white">
       <div className="section-container">
@@ -66,51 +57,50 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-center mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                active === cat
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {projects.map((project, i) => (
+            <div
+              key={i}
+              className="group relative overflow-hidden rounded-2xl cursor-pointer"
+              style={{ aspectRatio: '16/10' }}
             >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project) => (
-            <div key={project.title} className="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div className="relative overflow-hidden h-48">
+              {/* Картинка — сжимается снизу при hover */}
+              <div className="absolute inset-0 transition-all duration-500 ease-in-out group-hover:bottom-[72px]" style={{ bottom: 0 }}>
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover"
+                  style={{ height: '100%' }}
                 />
-                <div className="absolute inset-0 bg-navy-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" style={{ backgroundColor: 'rgba(8,15,34,0.7)' }}>
-                  <div className="bg-white/10 backdrop-blur border border-white/20 rounded-full p-3">
-                    <Icon name="ExternalLink" size={20} className="text-white" />
+                {/* Тёмный оверлей поверх фото */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+              </div>
+
+              {/* Нижняя плашка — выезжает при hover */}
+              <div
+                className="absolute left-0 right-0 bottom-0 px-6 py-5 flex items-center justify-between translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"
+                style={{ backgroundColor: '#0d1b3e' }}
+              >
+                <div>
+                  <div className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-1">
+                    {project.category}
+                  </div>
+                  <div className="text-white font-bold text-base leading-tight">
+                    {project.title}
                   </div>
                 </div>
-                <span className="absolute top-3 left-3 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  {project.category}
-                </span>
+
+                {/* Стрелка в белом круге */}
+                <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0 ml-4 shadow-lg">
+                  <Icon name="ArrowUpRight" size={20} className="text-black" />
+                </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-bold text-base mb-2" style={{ color: '#0d1b3e' }}>{project.title}</h3>
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{tag}</span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-1.5 text-blue-600 font-semibold text-sm">
-                  <Icon name="TrendingUp" size={14} />
-                  {project.result}
-                </div>
+
+              {/* Номер проекта — всегда виден */}
+              <div
+                className="absolute top-4 left-4 text-white/40 font-extrabold text-xs tracking-widest select-none"
+              >
+                {String(i + 1).padStart(2, '0')}
               </div>
             </div>
           ))}
