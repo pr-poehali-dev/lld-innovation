@@ -80,36 +80,38 @@ const ProjectPage = () => {
               <p className="text-gray-600 leading-relaxed text-base">{project.description}</p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-6 flex flex-col md:flex-row gap-6">
+            <div className="flex flex-col gap-4">
               {/* Задача */}
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="bg-gray-50 rounded-2xl p-5 flex items-start gap-4">
+                <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
                   <Icon name="Target" size={18} className="text-blue-600" />
-                  <h3 className="font-bold text-sm uppercase tracking-wide" style={{ color: '#0d1b3e' }}>Задача</h3>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{project.challenge}</p>
+                <div>
+                  <h3 className="font-bold text-sm uppercase tracking-wide mb-1" style={{ color: '#0d1b3e' }}>Задача</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{project.challenge}</p>
+                </div>
               </div>
-
-              <div className="w-px bg-gray-200 hidden md:block" />
 
               {/* Решение */}
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="bg-gray-50 rounded-2xl p-5 flex items-start gap-4">
+                <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
                   <Icon name="Lightbulb" size={18} className="text-green-600" />
-                  <h3 className="font-bold text-sm uppercase tracking-wide" style={{ color: '#0d1b3e' }}>Решение</h3>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{project.solution}</p>
+                <div>
+                  <h3 className="font-bold text-sm uppercase tracking-wide mb-1" style={{ color: '#0d1b3e' }}>Решение</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{project.solution}</p>
+                </div>
               </div>
 
-              <div className="w-px bg-gray-200 hidden md:block" />
-
               {/* Результат */}
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="bg-gray-50 rounded-2xl p-5 flex items-start gap-4">
+                <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
                   <Icon name="TrendingUp" size={18} className="text-blue-600" />
-                  <h3 className="font-bold text-sm uppercase tracking-wide" style={{ color: '#0d1b3e' }}>Результат</h3>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{project.result}</p>
+                <div>
+                  <h3 className="font-bold text-sm uppercase tracking-wide mb-1" style={{ color: '#0d1b3e' }}>Результат</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{project.result}</p>
+                </div>
               </div>
             </div>
 
