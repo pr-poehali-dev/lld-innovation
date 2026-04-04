@@ -1,47 +1,6 @@
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
-
-const projects = [
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/0747ad16-8995-41a0-829d-fe68b3defc42.jpg',
-    title: 'Юридическая компания «Правозащита»',
-    category: 'Лендинг',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/33da7463-0799-4a89-9178-eb127f88ce59.jpg',
-    title: 'Интернет-магазин «ТехноМаркет»',
-    category: 'Интернет-магазин',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/d5f3151e-37ef-415e-aac6-9089496c05f7.jpg',
-    title: 'Строительная компания «СтройПроект»',
-    category: 'Корпоративный',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/0747ad16-8995-41a0-829d-fe68b3defc42.jpg',
-    title: 'Медицинский центр «Здоровье»',
-    category: 'Лендинг',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/33da7463-0799-4a89-9178-eb127f88ce59.jpg',
-    title: 'Студия красоты «Glamour»',
-    category: 'Лендинг',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/d5f3151e-37ef-415e-aac6-9089496c05f7.jpg',
-    title: 'Оптовый поставщик «ОптТорг»',
-    category: 'Корпоративный',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/0747ad16-8995-41a0-829d-fe68b3defc42.jpg',
-    title: 'Ресторан «Итальяно»',
-    category: 'Лендинг',
-  },
-  {
-    image: 'https://cdn.poehali.dev/projects/25c7f3c1-bdc5-4298-bf40-b8d4834751d7/files/33da7463-0799-4a89-9178-eb127f88ce59.jpg',
-    title: 'Фитнес-клуб «SportLife»',
-    category: 'Корпоративный',
-  },
-];
+import projects from '@/data/projects';
 
 const Portfolio = () => {
   return (
@@ -59,12 +18,13 @@ const Portfolio = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project, i) => (
-            <div
-              key={i}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer"
+            <Link
+              key={project.slug}
+              to={`/projects/${project.slug}`}
+              className="group relative overflow-hidden rounded-2xl cursor-pointer block"
               style={{ aspectRatio: '16/10' }}
             >
-              {/* Картинка — сжимается снизу при hover */}
+              {/* Картинка */}
               <div className="absolute inset-0 transition-all duration-500 ease-in-out group-hover:bottom-[72px]" style={{ bottom: 0 }}>
                 <img
                   src={project.image}
@@ -98,7 +58,7 @@ const Portfolio = () => {
               <div className="absolute top-4 left-4 text-white/40 font-extrabold text-xs tracking-widest select-none">
                 {String(i + 1).padStart(2, '0')}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
